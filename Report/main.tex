@@ -13,10 +13,14 @@
 \usepackage{multicol}
 \usepackage{rotating}
 \usepackage{graphics}
+\usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{setspace}
 \usepackage{epsfig}
 \usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
 \usetikzlibrary{arrows,snakes,backgrounds}
 \usepackage{hyperref}
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
@@ -75,7 +79,33 @@
 \newcommand*{\subsubsubsectionmark}[1]{}
 \makeatother
 
+% Define colors for code listing
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
+% Code listing style
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
 \begin{document}
 
 \begin{titlepage}
@@ -105,6 +135,7 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 \multicolumn{1}{l}{\textbf{{\Large Assignment}}}\\
 \\
 \textbf{{\Huge Iris Flower Classification}}\\
+\textbf{{\Huge using several Machine Learning models}}\\
 \\
 \hline
 \end{tabular}
@@ -141,11 +172,36 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 \section{Introduction}
 Irises influenced the design of the French fleur-de-lis, are commonly used in the Japanese art of flower arrangement known as Ikebana, and underlie the floral scents of the “essence of violet” perfume. They’re also the subject of this well-known machine learning project, in which you must create an ML model capable of sorting irises based on five factors into one of three classes, Iris Setosa, Iris Versicolour, and Iris Virginica.
 
-To get started, the data set below includes 50 instances of each of the three iris classes for a total of 150 instances. While one of the classes is linearly separable, the other two are not. Your task is to create a model capable of classifying each iris instance into the appropriate class based on four attributes: sepal length, sepal width, petal length, and petal width. 
+To get started, the data set below includes 50 instances of each of the three iris classes for a total of 150 instances. While one of the classes is linearly separable, the other two are not. Our goal is to create a model capable of classifying each iris instance into the appropriate class based on four attributes: sepal length, sepal width, petal length, and petal width. 
+\begin{figure}[h]
+	\centering
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[height=4cm]{picture/flower/Iris Setosa} % Adjust height as needed
+		\caption{Iris Setosa}
+		\label{fig:setosa}
+	\end{minipage}\hfill
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[height=4cm]{picture/flower/Iris Versicolour} % Adjust height as needed
+		\caption{Iris Versicolour}
+		\label{fig:versicolour}
+	\end{minipage}\hfill
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[height=4cm]{picture/flower/Iris Virginica} % Adjust height as needed
+		\caption{Iris Virginica}
+		\label{fig:virginica}
+	\end{minipage}
+\end{figure}
 
 \section{Literature Review}
 Discuss previous work and findings related to the Iris classification problem.
-
+For classifying, i use 3 polular model in machine learning
+\subsection{K-nearest neighbors}
+\subsection{Random Forest}
+\subsection{Logistic Regression}
+\
 \section{Methodology}
 \subsection{Data Collection}
 The dataset was obtained from the UCI Machine Learning Repository. For more information, visit the \href{https://archive.ics.uci.edu/ml/datasets/iris}{UCI Iris Dataset} page.\\
@@ -156,14 +212,47 @@ Predicted attribute: class of iris plant.
 This is an exceedingly simple domain.
 
 \subsection{Data Preprocessing}
-Detail the steps taken to preprocess the data.
+\begin{enumerate}
+	\item \textbf{Loading the Dataset:} The dataset is loaded into a pandas DataFrame. This dataset includes features like sepal length, sepal width, petal length, and petal width, along with the class labels.
+	\item \textbf{Feature Selection:} The features (sepal length, sepal width, petal length, and petal width) are separated from the class labels. This is done by splitting the DataFrame into X (features) and y (labels).
+	\item \textbf{Splitting the Dataset:} The dataset is split into training and test sets.
+	\textit{train\_test\_split()}. This is a common practice in machine learning to evaluate the model on data that it hasn't seen during training. The test size is set to 20\% of the total dataset.
+	
+	\item \textbf{Feature Scaling:} Standardization of features using \textit{StandardScaler()}.
+\end{enumerate}
+The Python code for these steps is as follows:
 
-\subsection{Model Selection}
-Discuss the models you considered for this project.
+\begin{lstlisting}[language=Python]
+	import pandas as pd
+	from sklearn.model_selection import train_test_split
+	from sklearn.preprocessing import StandardScaler
+	
+	# Load dataset
+	url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+	names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
+	dataset = pd.read_csv(url, names=names)
+	
+	# Feature Selection
+	X = dataset.iloc[:, :-1].values
+	y = dataset.iloc[:, -1].values
+	
+	# Splitting the Dataset
+	X_train, X_test, y_train
+	y_test = train_test_split(X, y, test_size=0.2, random_state=1)
+	
+	# Feature Scaling
+	scaler = StandardScaler()
+	X_train = scaler.fit_transform(X_train)
+	X_test = scaler.transform(X_test)
+\end{lstlisting}
 
 \subsection{Model Training}
 Explain how you trained your model.
-
+\begin{enumerate}
+	\item \textbf{K-nearest neighbors} 
+	\item \textbf{Linear Regression} 
+	\item \textbf{Logistic Regression} 
+\end{enumerate}
 \section{Results and Discussion}
 \subsection{Model Performance}
 Present the results of your model.
@@ -175,8 +264,7 @@ Analyze and interpret the results.
 Summarize the main findings, the implications of your work, and any future work.
 
 \section{References}
-List of the references you used in your report.
-
+\href{https://machinelearningcoban.com/2017/01/08/knn/}{https://machinelearningcoban.com/2017/01/08/knn/}
 
 \end{document}
 
