@@ -59,7 +59,7 @@
 		\tiny \bf 
 	\end{tabular}  }
 \fancyfoot{} % clear all footer fields
-\fancyfoot[L]{\scriptsize \ttfamily Software Engineering - Semester 1 (2023 - 2024)}
+\fancyfoot[L]{\scriptsize \ttfamily Machine Learning - Semester 1 (2023 - 2024)}
 \fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/\pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.3pt}
 \renewcommand{\footrulewidth}{0.3pt}
@@ -128,15 +128,16 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 
 \begin{center}
 \begin{tabular}{c}
-\multicolumn{1}{l}{\textbf{{\Large Machine Learning - CO3001}}}\\
+\multicolumn{1}{l}{\textbf{{\Large Machine Learning - CO3117}}}\\
 ~~\\
 \hline
 \\
-\multicolumn{1}{l}{\textbf{{\Large Assignment}}}\\
+\multicolumn{1}{l}{\textbf{{\Large Assignment}}}\\\\
 \\
 \textbf{{\Huge Iris Flower Classification}}\\
+\multicolumn{1}{l}
 \textbf{{\Huge using several Machine Learning models}}\\
-\\
+\\\\
 \hline
 \end{tabular}
 \end{center}
@@ -145,12 +146,11 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 
 \begin{table}[h]
 \begin{tabular}{rrl}
-\hspace{3 cm} & \textbf{{\ Instructor}}: & Truong Thi Thai Minh \\
-\hspace{3 cm} & \textbf{{\ Class}}: & CC01 - Group 1 \\
-\hspace{3 cm} & \textbf{{\ Student(s)}}: 
+\hspace{3 cm} & \textbf{{\ Instructor}}: & Nguyen Duc Dung \\
+\hspace{3 cm} & \textbf{{\ Class}}: & CC01  \\
+\hspace{3 cm} & \textbf{{\ Student}}: 
 & Tran Anh Kiet - 2152147 \\ 
-& &  Le Duc Hoang Nam - 2111795\\
-& &  Vo Thien Nam - 2111817\\
+\\
 
 & &   \\
 & &   \\
@@ -158,7 +158,7 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 \end{table}
 
 \begin{center}
-{\footnotesize HO CHI MINH CITY, OCTOBER 2023}
+{\footnotesize HO CHI MINH CITY, DECEMBER 2023}
 \end{center}
 \end{titlepage}
 
@@ -198,10 +198,7 @@ To get started, the data set below includes 50 instances of each of the three ir
 \section{Literature Review}
 Discuss previous work and findings related to the Iris classification problem.
 For classifying, i use 3 polular model in machine learning
-\subsection{K-nearest neighbors}
-\subsection{Random Forest}
-\subsection{Logistic Regression}
-\
+\include{Literature.tex}
 \section{Methodology}
 \subsection{Data Collection}
 The dataset was obtained from the UCI Machine Learning Repository. For more information, visit the \href{https://archive.ics.uci.edu/ml/datasets/iris}{UCI Iris Dataset} page.\\
@@ -247,24 +244,77 @@ The Python code for these steps is as follows:
 \end{lstlisting}
 
 \subsection{Model Training}
-Explain how you trained your model.
+
+The training of different models in this project is outlined as follows:
+
 \begin{enumerate}
-	\item \textbf{K-nearest neighbors} 
-	\item \textbf{Linear Regression} 
-	\item \textbf{Logistic Regression} 
+	\item \textbf{K-nearest Neighbors (K-NN)}: 
+	For K-NN, the number of neighbors is set to 5.
+	\begin{itemize}
+		\item \textbf{For Classification:}
+		The K-NN model is trained (fit) on the training data (X\_train, y\_train). The trained model is then used to make predictions on the test set (X\_test). The model's performance is evaluated using a confusion matrix and a classification report, which provide insights into accuracy and other metrics. The `model.predict(X\_test)` method is used to apply the algorithm to each point in the test set, making predictions based on the similarity of these points to the training set.
+		
+		\item \textbf{For Regression:}
+		Two approaches can be used for weight assignment:
+		\begin{enumerate}
+			\item \textit{Uniform Weights} (`weights='uniform'`): Each of the 'k' nearest neighbors contributes equally to the prediction, regardless of their distance from the query point. For instance, in a KNN regression with k=5 and uniform weights, the predicted value is the average of the values of the 5 nearest neighbors.
+			
+			\item \textit{Distance Weights} (`weights='distance'`): Neighbors contribute to the prediction according to their distance from the query point. Closer neighbors have a greater influence on the prediction than those farther away, with the predicted value typically being a weighted average of the nearest neighbors' values, where weights are inversely proportional to the distance.
+		\end{enumerate}
+	\end{itemize}
+	
+	\item \textbf{Linear Regression}: 
+	[Provide details of Linear Regression training here.]
+	
+	\item \textbf{Logistic Regression}: 
+	[Provide details of Logistic Regression training here.]
 \end{enumerate}
+
 \section{Results and Discussion}
-\subsection{Model Performance}
-Present the results of your model.
+First, let plot all the data:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{picture/data}
+	\caption{Data with feature}
+	\label{fig:example}
+\end{figure}
+\subsection{Model Performance and Analysis}
 
-\subsection{Analysis}
-Analyze and interpret the results.
+\subsubsection{K-nearest neighbors}
+\begin{enumerate}
+	\item \textbf{Classifier Analysis}: The final KNN classifier achieved an impressive accuracy of 97\% on the test dataset, comprising 30 samples. This high accuracy indicates the model's effectiveness in classifying iris species based on their features.
+\begin{figure}[h]
+	\begin{minipage}{0.32\textwidth}
+	\centering
+	\includegraphics[height=4.2cm]{picture/KNN_confusion_matrix} % Adjust height as needed
+	\caption{Confusion matrix}
+	\label{fig:setosa}
+\end{minipage}\hspace{3cm}
+\begin{minipage}{0.32\textwidth}
+	\centering
+	\includegraphics[height=3cm]{picture/KNN_Classifier_result} % Adjust height as needed
+	\caption{Output result}
+	\label{fig:versicolour}
+\end{minipage}\hfill
+\end{figure}
 
+The confusion matrix further details the model's performance, revealing that only one instance of the Versicolor species was incorrectly classified. This insight is crucial for understanding the model's strengths and limitations in distinguishing between species.
+
+\item \textbf{Regression Analysis}: For a regression perspective, the 'petal-length' feature was used to predict the species, converting species names to numerical values.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\textwidth]{picture/KNN_Regression_petal}
+		\caption{Final result}
+		\label{fig:example}
+	\end{figure}
+\end{enumerate}
+ The results showed distinct clusters for each species after standard scaling of the data. Petal lengths below -1 were classified as Iris Setosa, lengths between -0.5 and 1 as Versicolor, and lengths above 0.5 as Iris Virginica. This demonstrates the relationship between petal length and species, highlighting the model's ability to discern patterns within the data.
+\newpage
 \section{Conclusion}
 Summarize the main findings, the implications of your work, and any future work.
 
 \section{References}
-\href{https://machinelearningcoban.com/2017/01/08/knn/}{https://machinelearningcoban.com/2017/01/08/knn/}
-
+\href{https://machinelearningcoban.com/2017/01/08/knn/}{https://machinelearningcoban.com/2017/01/08/knn/}\\
+\href{https://www.javatpoint.com/k-nearest-neighbor-algorithm-for-machine-learning}{https://www.javatpoint.com/k-nearest-neighbor-algorithm-for-machine-learning}
 \end{document}
 
