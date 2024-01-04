@@ -9,20 +9,15 @@ The Iris dataset includes 150 instances, each with four feature measurements (se
 ## Technologies Used
 - Python
 - Pandas library for data manipulation
-- [Include other libraries or frameworks used]
-
+- sklearn
+- matplotlib
 ## Setup and Installation
-[Instructions on setting up the project, including any required dependencies or libraries]
+install all the above library 
 
-## Usage
-[Instructions on how to run the project, including any necessary steps or commands]
 
 ## Features
 - Data loading and preprocessing using pandas
-- [List other features or functionalities of your project]
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
-[Specify the license under which your project is released, if applicable]
