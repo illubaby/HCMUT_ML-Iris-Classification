@@ -249,7 +249,7 @@ The training of different models in this project is outlined as follows:
 
 \begin{enumerate}
 	\item \textbf{K-nearest Neighbors (K-NN)}: 
-	For K-NN, the number of neighbors is set to 5.
+	For K-NN, the number of neighbors is set to 5.We take 20\% of data for testing
 	\begin{itemize}
 		\item \textbf{For Classification:}
 		The K-NN model is trained (fit) on the training data (X\_train, y\_train). The trained model is then used to make predictions on the test set (X\_test). The model's performance is evaluated using a confusion matrix and a classification report, which provide insights into accuracy and other metrics. The `model.predict(X\_test)` method is used to apply the algorithm to each point in the test set, making predictions based on the similarity of these points to the training set.
@@ -265,8 +265,8 @@ The training of different models in this project is outlined as follows:
 	
 	\item \textbf{Random Forest}: 
 	The number of random tree is set to 100, we take 40\% of data for testing
-	\begin{enumerate}
-\item Classification:
+	\begin{itemize}
+\item \textbf{Classification}:
 		Bootstrapping: Random Forest creates multiple decision trees using random subsets of training data, a process known as bootstrapping.
 		
 		Feature Randomness: Each tree is built using a random subset of features, increasing diversity and robustness among the trees.
@@ -280,8 +280,26 @@ The training of different models in this project is outlined as follows:
 		Handling Overfitting: By averaging multiple trees, Random Forest reduces overfitting compared to individual decision trees.
 \item \textbf{Random Forest Regressor}:
 In this analysis, we focus on the Iris Setosa species from the Iris dataset, specifically examining the relationship between the sepal length and the sepal width. A Random Forest Regressor, consisting of 100 decision trees, is employed to model this relationship. The dataset is first filtered to include only the data points corresponding to Iris Setosa. Subsequently, 'sepal-length' is used as the feature to predict 'sepal-width'. The data is split into training and test sets, with the training set used to fit the Random Forest model. The model's performance is then visualized through a plot, which displays both the actual data points and the predictions made by the regressor. This approach provides insights into how sepal length influences sepal width in the Iris Setosa species and demonstrates the application of Random Forest Regression on a subset of a dataset.		
-	\end{enumerate}
+	\end{itemize}
 
+
+    \item \textbf{Logistic Regression}: We allocate 50\% of the dataset for testing purposes.
+
+\begin{itemize}
+	\item \textbf{Classification}:
+	The One-vs-Rest (OvR) strategy is employed, wherein separate logistic regression classifiers are constructed for each class to effectively distinguish it from the remaining classes. In relation to the Iris dataset, this results in the formulation of three distinct models:
+	
+	\begin{itemize}
+		\item Model 1: Distinguishes Iris Setosa from the other species.
+		\item Model 2: Identifies Iris Versicolor as opposed to other variants.
+		\item Model 3: Differentiates Iris Virginica from the rest.
+	\end{itemize}
+	
+	During the prediction phase, all three models are concurrently executed, and the model offering the highest probability for a class is used to categorize the instance.
+	
+	\item \textbf{Regression Analysis}:
+	For a visual representation, a pairwise feature plot is created for two attributes of the Iris dataset, specifically 'sepal length' and 'sepal width'. This method visualizes the decision boundaries in the space defined by these two features and does not represent the full complexity of the data.
+\end{itemize}
 
 \end{enumerate}
 
@@ -349,19 +367,71 @@ In the regression analysis, the focus was on predicting the sepal width based on
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1\textwidth]{picture/RF5}
+	\includegraphics[width=0.7\textwidth]{picture/RF5}
 	\caption{Random Forest Regression Analysis of Sepal Width Based on Sepal Length for Iris Setosa}
 	\label{fig:iris_setosa_regression}
 \end{figure}
 \end{enumerate}
 \newpage
+\subsubsection{Logistic Regression}
+\begin{enumerate}
+	\item \textbf{Classification Analysis}
+\begin{figure}[h]
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[height=4.2cm]{picture/LR2} % Adjust height as needed
+		\caption{Confusion matrix for Random Forest Classifier}
+		\label{fig:setosa}
+	\end{minipage}\hspace{3cm}
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[height=3cm]{picture/LR3} % Adjust height as needed
+		\caption{Classification output results}
+		\label{fig:versicolour}
+	\end{minipage}\hfill
+\end{figure}
+	\item \textbf{Regression Analysis}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\textwidth]{picture/LR4}
+		\caption{Logistic Regression Sigmoid Function}
+		\label{fig:logistic_regression}
+	\end{figure}
+\end{enumerate}
+\subsubsection{Other Reference Model}
+In here, i present some other model for visualization purpose:
+\begin{figure}[h]
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[height=4.2cm]{picture/Anomaly} % Adjust height as needed
+		\caption{Confusion matrix for Random Forest Classifier}
+		\label{fig:setosa}
+	\end{minipage}\hspace{3cm}
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[height=4.2cm]{picture/k_mean} % Adjust height as needed
+		\caption{Classification output results}
+		\label{fig:versicolour}
+	\end{minipage}\hfill
+\end{figure}
+\newpage
 \section{Conclusion}
 Github link for this project:
 \href{https://github.com/illubaby/ML-Iris-Classification}{ML-Iris-Classification}\\
-Summarize the main findings, the implications of your work, and any future work.
+In this study, i successfully developed and evaluated a model for the classification of iris flowers into three species - Setosa, Versicolor, and Virginica - based on their physical attributes: sepal length, sepal width, petal length, and petal width. Our work encapsulates the classic machine learning task of classification, leveraging the widely-recognized Iris dataset. This dataset, comprising 150 instances with four feature measurements and a corresponding species label, served as the foundation for our analytical approach.
+
+Throughout the project, our primary objective was to harness the predictive power of machine learning to accurately categorize each iris flower into its appropriate species. To achieve this, we employed Python and the pandas library for data manipulation and preliminary analysis, ensuring a robust understanding of the dataset's characteristics and potential challenges.
+
+Upon thorough exploration, we observed distinct patterns and relationships within the data, which guided our choice of machine learning models. The simplicity and effectiveness of our chosen model are evident in its ability to dissect the nuanced differences between the species, based on the given attributes.
+
+This project not only demonstrates the practical application of machine learning algorithms in biological classification but also serves as a vital learning experience in data analysis, model selection, and performance evaluation. The insights gained here can be extended to more complex classification tasks, with potential adaptations and enhancements to tackle datasets exhibiting higher dimensions and variability.
+
+In conclusion, the Iris Flower Classification project stands as a testament to the power and versatility of machine learning in transforming raw data into meaningful knowledge, driving forward the fields of data science and computational biology.
 
 \section{References}
 \href{https://machinelearningcoban.com/2017/01/08/knn/}{https://machinelearningcoban.com/2017/01/08/knn/}\\
-\href{https://www.javatpoint.com/k-nearest-neighbor-algorithm-for-machine-learning}{https://www.javatpoint.com/k-nearest-neighbor-algorithm-for-machine-learning}
+\href{https://www.javatpoint.com/k-nearest-neighbor-algorithm-for-machine-learning}{https://www.javatpoint.com/k-nearest-neighbor-algorithm-for-machine-learning}\\
+\href{https://www.analyticsvidhya.com/blog/2021/10/everything-you-need-to-know-about-linear-regression/}{https://www.analyticsvidhya.com/blog/2021/10/everything-you-need-to-know-about-linear-regression/}\\
+\href{https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-logistic-regression/}{https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-logistic-regression/}
 \end{document}
 

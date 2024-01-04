@@ -65,7 +65,49 @@ Random Forest, while a collection of decision trees, differs significantly in it
 
 In contrast, Random Forest selects random observations and features to construct several decision trees and then averages their predictions. This method helps mitigate overfitting, which is a common issue with “deep” decision trees. Random Forest achieves this by creating random subsets of features, building smaller trees, and then combining them. However, it’s important to note that this approach may increase computational time and doesn't always prevent overfitting, depending on the number of trees constructed.
 
-	\item \textbf{Logistic Regression}
+\item \textbf{Logistic Regression} \\
+Logistic regression is a supervised machine learning algorithm used for binary classification tasks. It predicts the probability of a binary outcome, which can be one of two classes: for example, yes/no, 0/1, or true/false.
+
+This algorithm examines the relationship between one or more independent variables and the likelihood of a particular outcome, classifying observations into discrete categories. Logistic regression is widely used in fields such as medicine, finance, and social sciences, where it helps estimate the probability that an instance belongs to a particular class.
+
+For instance, logistic regression can be used to:
+\begin{enumerate}
+	\item Predict the likelihood of a heart attack based on risk factors such as weight and exercise frequency.
+	\item Estimate a student's chances of university admission based on standardized test scores.
+\end{enumerate}
+
+\textbf{Logistic Regression Equation and Assumptions} \\
+Logistic regression employs a logistic function, also known as the sigmoid function, which is characterized by an S-shaped curve. This function maps any real-valued number into a value between 0 and 1, which can be interpreted as a probability.
+
+The decision of classifying an instance into a particular class is made based on whether the estimated probability is above or below a certain threshold. Commonly, a threshold of 0.5 is used, meaning that if the sigmoid function's output is greater than 0.5, the instance is predicted to belong to the positive class (1); otherwise, it is predicted to belong to the negative class (0).
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{picture/LR1}
+	\caption{Logistic Regression Sigmoid Function}
+	\label{fig:logistic_regression}
+\end{figure}
+
+The sigmoid function is an essential component of logistic regression and is defined by the following equation:
+
+\[ f(x) = \frac{1}{1 + e^{-value}} \]
+
+Here, \( e \) is the base of the natural logarithm, and \( value \) is the linear combination of the input values that we wish to transform into a probability.
+
+The logistic regression model can be expressed by the equation:
+
+\[ y = \frac{1}{1 + e^{-(b_0 + b_1x)}} \]
+
+In this formula:
+\begin{itemize}
+	\item \( x \) represents the input feature.
+	\item \( y \) is the predicted probability of the positive class.
+	\item \( b_0 \) is the bias or intercept term.
+	\item \( b_1 \) is the coefficient for the input feature \( x \).
+\end{itemize}
+
+While this equation resembles the formula for linear regression, the critical difference is that logistic regression models the probability of a binary outcome rather than a continuous value.
+
+
 \end{enumerate}
 
 \subsection{Confusion Matrix}
