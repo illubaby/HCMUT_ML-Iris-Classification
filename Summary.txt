@@ -1,9 +1,0 @@
-Here's a summary of the Iris Flower Classification project:
-
-Project Selection: Working on the Iris Flower Classification project, a classic machine learning task involving the classification of iris flowers into one of three species based on their physical attributes.
-
-Dataset Acquisition: You obtained the Iris dataset, which includes data on sepal length, sepal width, petal length, petal width, and the corresponding species of iris flowers.
-
-Initial Exploration: The dataset was loaded into Python using the pandas library. The dataset comprises 150 entries, each with four feature measurements and a species label.
-Goal:Our goal is to create a model capable of classifying each iris instance into the appropriate class based
-on four attributes: sepal length, sepal width, petal length, and petal width.
