@@ -40,7 +40,31 @@
 		\label{fig:knn3}
 	\end{figure}
 	
-	\item \textbf{Random Forest}
+\item \textbf{Random Forest}
+Random Forest is a supervised learning algorithm known for its versatility. It constructs a “forest” which is an ensemble of decision trees, typically trained using the bagging method. This method involves combining multiple learning models to improve the overall result.
+
+Random Forest is effective because it constructs multiple decision trees and merges them to achieve a more accurate and stable prediction. This algorithm is advantageous as it can be applied to both classification and regression problems, which are prevalent in many machine learning systems.
+
+\textbf{Random Forest in Classification and Regression}
+In classification, which is often considered a fundamental aspect of machine learning, Random Forest operates effectively. The following figure illustrates a Random Forest model with two trees:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{picture/RF1}
+	\caption{Example of a Random Forest Model with Two Trees}
+	\label{fig:random_forest}
+\end{figure}
+
+Random Forest shares many hyperparameters with decision trees and bagging classifiers. It simplifies the process by combining these elements into a single classifier. The classifier can be adjusted to handle regression tasks as well, using the regressor class of Random Forest.
+
+The algorithm introduces additional randomness into the model during tree construction. Instead of searching for the most important feature while splitting a node, it searches among a random subset of features. This approach enhances diversity and typically yields a better model.
+
+In a Random Forest classifier, only a random subset of features is considered for splitting a node. Trees can be made even more random by using random thresholds for each feature rather than the best possible thresholds, as is done in standard decision trees.
+
+\textbf{Random Forest Models vs. Decision Trees}
+Random Forest, while a collection of decision trees, differs significantly in its approach. A decision tree creates a set of rules from a training dataset, which it then uses to make predictions. For example, in predicting online advertisement clicks, a decision tree will generate rules based on past click data and associated features.
+
+In contrast, Random Forest selects random observations and features to construct several decision trees and then averages their predictions. This method helps mitigate overfitting, which is a common issue with “deep” decision trees. Random Forest achieves this by creating random subsets of features, building smaller trees, and then combining them. However, it’s important to note that this approach may increase computational time and doesn't always prevent overfitting, depending on the number of trees constructed.
+
 	\item \textbf{Logistic Regression}
 \end{enumerate}
 

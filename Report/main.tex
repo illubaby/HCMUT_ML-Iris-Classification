@@ -263,11 +263,26 @@ The training of different models in this project is outlined as follows:
 		\end{enumerate}
 	\end{itemize}
 	
-	\item \textbf{Linear Regression}: 
-	[Provide details of Linear Regression training here.]
-	
-	\item \textbf{Logistic Regression}: 
-	[Provide details of Logistic Regression training here.]
+	\item \textbf{Random Forest}: 
+	The number of random tree is set to 100, we take 40\% of data for testing
+	\begin{enumerate}
+\item Classification:
+		Bootstrapping: Random Forest creates multiple decision trees using random subsets of training data, a process known as bootstrapping.
+		
+		Feature Randomness: Each tree is built using a random subset of features, increasing diversity and robustness among the trees.
+		
+		Building Decision Trees: Trees are formed by repeatedly splitting data based on features, using criteria like Gini impurity or entropy.
+		
+		Independence of Trees: Trees grow independently, reducing correlation and capturing a wide range of data patterns.
+		
+		Aggregation of Results: The forest combines tree predictions, usually through majority voting, to improve accuracy and generalization.
+		
+		Handling Overfitting: By averaging multiple trees, Random Forest reduces overfitting compared to individual decision trees.
+\item \textbf{Random Forest Regressor}:
+In this analysis, we focus on the Iris Setosa species from the Iris dataset, specifically examining the relationship between the sepal length and the sepal width. A Random Forest Regressor, consisting of 100 decision trees, is employed to model this relationship. The dataset is first filtered to include only the data points corresponding to Iris Setosa. Subsequently, 'sepal-length' is used as the feature to predict 'sepal-width'. The data is split into training and test sets, with the training set used to fit the Random Forest model. The model's performance is then visualized through a plot, which displays both the actual data points and the predictions made by the regressor. This approach provides insights into how sepal length influences sepal width in the Iris Setosa species and demonstrates the application of Random Forest Regression on a subset of a dataset.		
+	\end{enumerate}
+
+
 \end{enumerate}
 
 \section{Results and Discussion}
@@ -309,8 +324,40 @@ The confusion matrix further details the model's performance, revealing that onl
 	\end{figure}
 \end{enumerate}
  The results showed distinct clusters for each species after standard scaling of the data. Petal lengths below -1 were classified as Iris Setosa, lengths between -0.5 and 1 as Versicolor, and lengths above 0.5 as Iris Virginica. This demonstrates the relationship between petal length and species, highlighting the model's ability to discern patterns within the data.
+\subsubsection{Random Forest Analysis}
+The Random Forest algorithm was applied in two distinct modes: classification and regression. This section outlines the results obtained from both approaches.
+\begin{enumerate}
+\item \textbf{Classification Analysis}
+The classification model was evaluated using a confusion matrix, which is depicted in Figure \ref{fig:setosa}. The model achieved an overall prediction accuracy of 97\%. However, it is noteworthy that there were misclassifications, specifically one instance of Iris virginica and one of Iris versicolor being incorrectly classified.
+
+\begin{figure}[h]
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[height=4.2cm]{picture/RF2} % Adjust height as needed
+		\caption{Confusion matrix for Random Forest Classifier}
+		\label{fig:setosa}
+	\end{minipage}\hspace{3cm}
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[height=3cm]{picture/RF3} % Adjust height as needed
+		\caption{Classification output results}
+		\label{fig:versicolour}
+	\end{minipage}\hfill
+\end{figure}
+\item \textbf{Regression Analysis}
+In the regression analysis, the focus was on predicting the sepal width based on the sepal length specifically for the Iris Setosa species. The Random Forest Regressor, though effective, exhibited limitations in extrapolating values beyond the range of the training data. The model generally predicted values close to the maximum of the training set range when confronted with inputs outside this range. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{picture/RF5}
+	\caption{Random Forest Regression Analysis of Sepal Width Based on Sepal Length for Iris Setosa}
+	\label{fig:iris_setosa_regression}
+\end{figure}
+\end{enumerate}
 \newpage
 \section{Conclusion}
+Github link for this project:
+\href{https://github.com/illubaby/ML-Iris-Classification}{ML-Iris-Classification}\\
 Summarize the main findings, the implications of your work, and any future work.
 
 \section{References}
